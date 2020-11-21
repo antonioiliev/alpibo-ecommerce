@@ -1,9 +1,14 @@
 import React from 'react';
+import Header from './components/header/header';
+import Footer from './components/Footer';
+import HomePage from './containers/homepage.container';
 
 function App() {
   return (
-    <div className="App">
-      <p>Welcome to Alpibo ecommerce</p>
+    <div style={{ paddingTop: '50px' }}>
+      <Header />
+      <HomePage />
+      <Footer />
     </div>
   );
 }

@@ -1,11 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import App from './App';
+import { green, red } from '@material-ui/core/colors';
 import reportWebVitals from './reportWebVitals';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#ffffff',
+      main: '#382415',
+      dark: '#1a110a',
+    },
+    secondary: {
+      light: '#fff',
+      main: '#fbb040',
+      dark: '#ff9900',
+    },
+    warning: {
+      main: '#ffc071',
+      dark: '#ffb25e',
+    },
+    error: {
+      light: red[50],
+      main: red[500],
+      dark: red[700],
+    },
+    success: {
+      light: green[50],
+      main: green[500],
+      dark: green[700],
+    },
+  },
+  typography: {
+    fontSize: 14,
+    fontWeightLight: 300, 
+    fontWeightRegular: 400,
+    fontWeightMedium: 700,
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
