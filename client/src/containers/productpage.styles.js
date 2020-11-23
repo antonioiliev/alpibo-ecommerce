@@ -47,6 +47,9 @@ const styles = (theme) => ({
             color: theme.palette.primary.main,
             cursor: 'pointer'
         }
+    },
+    outOfStockP: {
+        color: '#ff0000'
     }
 });
 

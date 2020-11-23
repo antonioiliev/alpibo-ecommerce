@@ -31,8 +31,13 @@ const ProductPage = ({ classes, match }) => {
                 <p>{product.description}</p>
                 <p>${product.price}</p>
                 <div>
-                    <input type="number" id="qty" value={qty} onChange={changeQty} className={classes.qtyInput} />
-                    <button onClick={addToCart} className={classes.addToCartButton}>Add to cart</button>
+                    {product.countInStock > 0 ? (
+                        <React.Fragment>
+                            <input type="number" id="qty" value={qty} onChange={changeQty} className={classes.qtyInput} />
+                            <button onClick={addToCart} className={classes.addToCartButton}>Add to cart</button>
+                        </React.Fragment>
+                    ) : <p className={classes.outOfStockP}>The product is out of stock</p>}
+                    
                 </div>
             </div>
         </div>
