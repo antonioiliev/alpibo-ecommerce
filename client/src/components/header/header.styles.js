@@ -11,7 +11,9 @@ const styles = (theme) => ({
       fontWeight: 300,
       marginLeft: '20px',
       color: theme.palette.primary.dark,
-      display: 'flex'
+      [theme.breakpoints.down('sm')]: {
+        marginRight: 'auto'
+      }
     },
     toolbar: {
       display: 'flex',

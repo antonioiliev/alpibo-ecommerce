@@ -2,7 +2,8 @@ const styles = (theme) => ({
     root: {
         width: '100%',
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        flexFlow: 'row wrap'
     }
   });
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import routes from '../../constants/routes.json';
@@ -20,11 +20,9 @@ const Header = props => {
       <AppBar position="fixed" elevation={2} className={classes.appbar}>
         <Toolbar className={classes.toolbar}>
           <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
             className={classes.title}
-            href={routes.HOME}
+            to={routes.HOME}
+            alt="Homepage"
           >
             <img loading="lazy" className={classes.logo} src={process.env.PUBLIC_URL + '/logo.svg'} alt="MYChocolatier logo" />
           </Link>
