@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { withStyles } from '@material-ui/core/styles';
 import Rating from '../components/products/rating/rating';
-import products from '../components/products/products.list';
 import routes from '../constants/routes.json';
 import styles from './productpage.styles';
 
 const ProductPage = ({ classes, match }) => {
-    const product = products.find(product => product._id === match.params.id);
+    // const product = products.find(product => product._id === match.params.id);
+    const [product, setProduct] = React.useState({});
+
     const [qty, setQty] = React.useState(0);
 
     const addToCart = () => {
@@ -19,6 +20,15 @@ const ProductPage = ({ classes, match }) => {
             setQty(e.target.value);
         }
     } 
+
+    React.useEffect(() => {
+        const queryProduct = async () => {
+            const { data } = await axios.get(`/api/products/${match.params.id}`);
+            setProduct(data);
+        };
+
+        queryProduct();
+    }, [match]);
 
     return (
         <div className={classes.root}>

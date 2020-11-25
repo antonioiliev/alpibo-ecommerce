@@ -5,11 +5,16 @@
   "repository": "https://github.com/antonioiliev/alpibo-ecommerce.git",
   "author": "Antonio Iliev <antonio.iliev94@gmail.com>",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "nodemon api/index.js"
   },
   "dependencies": {
-    "express": "^4.17.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
     "nodemon": "^2.0.6"
   }
 }
