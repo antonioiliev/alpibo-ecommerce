@@ -7,11 +7,15 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "start": "nodemon api/index.js"
+    "start": "nodemon api/index.js",
+    "data:import": "node api/seeder",
+    "data:destroy": "node api/seeder -d"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.10.16"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",

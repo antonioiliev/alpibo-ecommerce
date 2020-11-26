@@ -1,6 +1,5 @@
 const products = [
     {
-      _id: '1',
       name: 'Lavender Chocolate Chips 250G. (NEW)',
       image: '/images/products/lavender-chocolate-chips.jpg',
       description:
@@ -12,7 +11,6 @@ const products = [
       numReviews: 12,
     },
     {
-      _id: '2',
       name: 'Plums With Nuts, Orange Peels And Cinnamon In Dark 54% Chocolate',
       image: '/images/products/plums-with-walnut.jpg',
       description: 'Pack of 100 g. <br> VEGAN! <br> * Optionally can be covered with dark 72%, milk or white chocolate',
@@ -23,7 +21,6 @@ const products = [
       numReviews: 8,
     },
     {
-      _id: '3',
       name: 'Chocolate Chips 250 gr.',
       image: '/images/products/chocolate-chips.jpg',
       description:
