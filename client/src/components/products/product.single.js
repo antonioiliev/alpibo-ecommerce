@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
-import styles from './product.styles';
+import styles from './styles/product.styles';
 import Rating from './rating/rating';
 
 const Product = ({ classes, product }) => {

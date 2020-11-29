@@ -1,4 +1,4 @@
-const styles = (theme) => ({
+const styles = () => ({
     h2: {
         textAlign: 'center'
     }

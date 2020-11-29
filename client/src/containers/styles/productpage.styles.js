@@ -18,12 +18,20 @@ const styles = (theme) => ({
     h1: {
         marginTop: '0px'
     },
+    nameLoader: {
+        width: '100%',
+        height: 40
+    },
     productImage: {
         width: '100%',
         maxWidth: '500px',
         maxHeight: '500px',
         objectFit: 'cover',
         objectPosition: '0 100%'
+    },
+    imageLoader: {
+        width: '90%',
+        height: 300
     },
     qtyInput: {
         maxWidth: '40px',
@@ -38,7 +46,7 @@ const styles = (theme) => ({
         background: theme.palette.primary.main,
         border: `1px solid ${theme.palette.primary.main}`,
         fontSize: '18px',
-        textTransform: 'uppercase',
+        // textTransform: 'uppercase',
         fontWeight: 100,
         color: '#fff',
         transition: 'all 0.3s',
@@ -50,6 +58,15 @@ const styles = (theme) => ({
     },
     outOfStockP: {
         color: '#ff0000'
+    },
+    descriptionLoader: {
+        width: '90%',
+        height: 300,
+        margin: '10px 0px'
+    },
+    priceLoader: {
+        width: 50,
+        height: 20
     }
 });
 

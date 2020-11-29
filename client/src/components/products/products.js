@@ -1,27 +1,26 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import styles from './products.styles';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from './styles/products.styles';
 import Product from './product.single';
+import { listProducts } from '../../redux/actions/product.actions';
+import ProductsLoader from './products.loader.js';
 
 const Products = ({ classes }) => {
-    const [products, setProducts] = React.useState([]);
+    const dispatch = useDispatch();
+    const productList = useSelector(state => state.productList);
+    const { loading, products, error } = productList;
 
     React.useEffect(() => {
-        const queryProducts = async () => {
-            const { data } = await axios.get('/api/products');
-            console.log('server returned', data);
-            setProducts(data);
-        };
-
-        queryProducts();
-    }, []);
+        dispatch(listProducts());
+    }, [dispatch]);
 
     return (
         <div className={classes.root}>
-            {products.map((product) => {
+            {loading && <ProductsLoader />}
+            {products.length > 0 ? products.map((product) => {
                 return <Product product={product} />
-            })}
+            }) : <p>No products to display</p>}
         </div>
     )
 }

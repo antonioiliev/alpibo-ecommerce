@@ -1,13 +1,16 @@
 import React from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
+import Skeleton from '@material-ui/lab/Skeleton';
 import Rating from '../components/products/rating/rating';
-import routes from '../constants/routes.json';
-import styles from './productpage.styles';
+import styles from './styles/productpage.styles';
+import { listProductDetails } from '../redux/actions/product.actions';
 
 const ProductPage = ({ classes, match }) => {
-    // const product = products.find(product => product._id === match.params.id);
-    const [product, setProduct] = React.useState({});
+    const dispatch = useDispatch();
+
+    const productDetails = useSelector(state => state.productDetails);
+    const { loading, product, error } = productDetails;
 
     const [qty, setQty] = React.useState(0);
 
@@ -22,24 +25,37 @@ const ProductPage = ({ classes, match }) => {
     } 
 
     React.useEffect(() => {
-        const queryProduct = async () => {
-            const { data } = await axios.get(`/api/products/${match.params.id}`);
-            setProduct(data);
-        };
-
-        queryProduct();
+        dispatch(listProductDetails(match.params.id));
     }, [match]);
 
     return (
         <div className={classes.root}>
             <div className={classes.leftCol}>
-                <img src={product.image} className={classes.productImage} alt={product.name} />
+                {product.image && !loading ? (
+                    <img src={product.image} className={classes.productImage} alt={product.name} />
+                ) : (
+                    <Skeleton variant="rect" className={classes.imageLoader} />
+                )}
             </div>
             <div className={classes.rightCol}>
-                <h1 className={classes.h1}>{product.name}</h1>
+                {product.name && !loading ? (
+                    <h1 className={classes.h1}>{product.name}</h1>
+                ) : (
+                    <Skeleton variant="rect" className={classes.nameLoader} />
+                )}
                 <Rating rating={product.rating} numReviews={product.numReviews} />
-                <p>{product.description}</p>
-                <p>${product.price}</p>
+
+                {product.description && !loading ? (
+                    <p>{product.description}</p>
+                ) : (
+                    <Skeleton variant="rect" className={classes.descriptionLoader} />
+                )}
+
+                {product.price && !loading ? (
+                    <p>${product.price}</p>
+                ) : (
+                    <Skeleton variant="rect" className={classes.priceLoader} />
+                )}
                 <div>
                     {product.countInStock > 0 ? (
                         <React.Fragment>

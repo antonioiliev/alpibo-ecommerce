@@ -1,5 +1,6 @@
 {
     "HOME": "/",
-    "PRODUCT": "/product/:id"
+    "PRODUCT": "/product/:id",
+    "CART": "/cart"
 }
   

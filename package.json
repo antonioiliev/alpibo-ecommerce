@@ -11,6 +11,9 @@
     "data:import": "node api/seeder",
     "data:destroy": "node api/seeder -d"
   },
+  "nodemonConfig": {
+    "ignore": ["client/*"]
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
