@@ -2,7 +2,7 @@ import axios from 'axios';
 import { CART_ADD_ITEM } from '../types';
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-    const { data } = axios.get(`/api/products/${id}`);
+    const { data } = await axios.get(`/api/products/${id}`);
 
     dispatch({
         type: CART_ADD_ITEM,
@@ -16,5 +16,5 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
         }
     });
 
-    localStorage.setItem('cartItems', JSON.stringify(getState.cart.cartItems));
+    localStorage.setItem('alpibo_cart_items', JSON.stringify(getState().cart.cartItems));
 }

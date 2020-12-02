@@ -6,6 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import routes from '../../constants/routes.json';
 import HeaderMenu from './menu/menu';
 import styles from './header.styles';
+import HeaderCart from './cart/cart.header';
 import IconButton from '@material-ui/core/IconButton';
 import { 
   ShoppingBasket as CartIcon,
@@ -27,9 +28,7 @@ const Header = props => {
             <img loading="lazy" className={classes.logo} src={process.env.PUBLIC_URL + '/logo.svg'} alt="MYChocolatier logo" />
           </Link>
           <HeaderMenu />
-          <IconButton color="primary">
-            <CartIcon style={{ fontSize: 34 }} />
-          </IconButton>
+          <HeaderCart />
           <IconButton color="primary">
             <AccountIcon style={{ fontSize: 34 }} />
           </IconButton>

@@ -5,6 +5,7 @@ import Skeleton from '@material-ui/lab/Skeleton';
 import Rating from '../components/products/rating/rating';
 import styles from './styles/productpage.styles';
 import { listProductDetails } from '../redux/actions/product.actions';
+import { addToCart as addToCartAction } from '../redux/actions/cart.actions';
 
 const ProductPage = ({ classes, match }) => {
     const dispatch = useDispatch();
@@ -12,15 +13,15 @@ const ProductPage = ({ classes, match }) => {
     const productDetails = useSelector(state => state.productDetails);
     const { loading, product, error } = productDetails;
 
-    const [qty, setQty] = React.useState(0);
+    const [qty, setQty] = React.useState(1);
 
     const addToCart = () => {
-
+        dispatch(addToCartAction(product._id, qty));
     }
 
     const changeQty = (e) => {
         if (e.target.value > 0 && e.target.value <= product.countInStock) {
-            setQty(e.target.value);
+            setQty(parseInt(e.target.value));
         }
     } 
 

@@ -1,6 +1,7 @@
 const styles = (theme) => ({
     root: {
         width: '100%',
+        flex: 1,
         display: 'flex',
         flexDirection: 'column',
         alignContent: 'center',
@@ -19,8 +20,18 @@ const styles = (theme) => ({
         borderRadius: 5,
         boxShadow: '0px 0px 3px rgba(0,0,0,0.5)'
     },
+    productInfo: {
+        marginTop: '20px'
+    },
+    price: {
+        fontSize: '20px'
+    },
+    addToCartButton: {
+      marginTop: 'auto'  
+    },
     title: {
         color: '#333',
+        fontWeight: 500,
         textDecoration: 'none',
         margin: '10px 0px'
     }
