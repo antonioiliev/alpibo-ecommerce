@@ -10,7 +10,7 @@ const reducers = combineReducers({
     cart: cartReducer
 });
 
-const cartItemsFromLocalStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [];
+const cartItemsFromLocalStorage = localStorage.getItem('alpibo_cart_items') ? JSON.parse(localStorage.getItem('alpibo_cart_items')) : [];
 
 const initialState = {
     cart: {

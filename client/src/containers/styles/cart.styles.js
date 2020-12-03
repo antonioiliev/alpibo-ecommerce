@@ -1,6 +1,9 @@
 const styles = () => ({
     h1: {
-        textAlign: 'center'
+        textAlign: 'center',
+        fontSize: '42px',
+        textTransform: 'uppercase',
+        fontWeight: 300
     }
   });
 

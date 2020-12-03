@@ -32,7 +32,7 @@ const HeaderCart = ({ classes }) => {
   return (
     <React.Fragment>
         <IconButton color="primary" onClick={() => toggleDrawer(true)}>
-          <Badge badgeContent={totalCartItems} color="primary">
+          <Badge badgeContent={totalCartItems} invisible={totalCartItems.length === 0} color="primary">
             <CartIcon style={{ fontSize: 34 }} />
           </Badge>
         </IconButton>
@@ -41,13 +41,23 @@ const HeaderCart = ({ classes }) => {
               <React.Fragment>
                 {cart.map((product) => <CartItem product={product} />)}
                 <p className={classes.subTotal}>Subtotal: ${subTotal.toFixed(2)}</p>
-                <Link 
-                  to="/cart"
-                  className={classes.reviewCartButton}
-                  onClick={() => toggleDrawer(false)}
-                >
-                  Review Cart
-                </Link>
+                <div className={classes.buttonsWrapper}>
+                  <Link 
+                    to="/cart"
+                    className={classes.reviewCartButton}
+                    onClick={() => toggleDrawer(false)}
+                  >
+                    Review Cart
+                  </Link>
+                  <Link 
+                    to="/checkout"
+                    className={classes.checkoutButton}
+                    onClick={() => toggleDrawer(false)}
+                  >
+                    Checkout
+                  </Link>
+                </div>
+                
 
               </React.Fragment>
               ) : 'Your cart is empty!'}
