@@ -19,7 +19,7 @@ const Products = ({ classes }) => {
         <div className={classes.root}>
             {loading && <ProductsLoader />}
             {products.length > 0 ? products.map((product, index) => {
-                return <Product key={index} product={product} />
+                return <Product key={`product-${index}`} product={product} />
             }) : <p>No products to display</p>}
         </div>
     )

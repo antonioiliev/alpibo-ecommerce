@@ -1,5 +1,7 @@
 const styles = (theme) => ({
   table: {
+    width: '100%',
+    maxWidth: '1100px',
     margin: 'auto',
     '& th': {
       minWidth: 100,
@@ -18,11 +20,15 @@ const styles = (theme) => ({
     '& .imageTD': {
       textAlign: 'center'
     },
-    '& tr': {
+    '& > tbody > tr': {
       [theme.breakpoints.down('sm')]: {
         display: 'flex',
         flexDirection: 'column'
       }
+    },
+    '& input': {
+      width: '40px',
+      padding: '10px'
     }
   },
   productImage: {
@@ -30,6 +36,12 @@ const styles = (theme) => ({
     height: 80,
     objectFit: 'cover',
     borderRadius: '50%'
+  },
+  itemDeleteButton: {
+    color: '#ff0000',
+    border: '1px solid #ff0000',
+    borderRadius: '50%',
+    fontSize: 18
   }
   });
 

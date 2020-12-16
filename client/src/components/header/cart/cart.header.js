@@ -26,6 +26,9 @@ const HeaderCart = ({ classes }) => {
     if (cart.length > 0) {
       setTotalCartItems(cart.reduce((acc, item) => acc + item.qty, 0));
       setSubTotal(cart.reduce((acc, item) => acc + item.qty * item.price, 0));
+    } else {
+      setTotalCartItems(0);
+      setSubTotal(0);
     }
   }, [cart]);
 
@@ -39,7 +42,7 @@ const HeaderCart = ({ classes }) => {
         <Drawer anchor='right' className={classes.cartDrawer} open={cartDrawerOpen} onClose={() => toggleDrawer(false)}>
             {cart.length > 0 ? (
               <React.Fragment>
-                {cart.map((product) => <CartItem product={product} />)}
+                {cart.map((product, index) => <CartItem key={`cart-item-${index}`} product={product} />)}
                 <p className={classes.subTotal}>Subtotal: ${subTotal.toFixed(2)}</p>
                 <div className={classes.buttonsWrapper}>
                   <Link 
