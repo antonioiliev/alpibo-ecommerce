@@ -6,11 +6,16 @@ const styles = (theme) => ({
         '& .MuiDrawer-paper': {
             width: '40%',
             maxWidth: '900px',
+            textAlign: 'center',
             [theme.breakpoints.down('sm')]: {
                 width: '70%'
             },
             [theme.breakpoints.down('xs')]: {
                 width: '100%'
+            },
+
+            '& p': {
+                marginTop: '20px'
             }
         }
     },

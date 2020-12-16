@@ -14,7 +14,10 @@ const CartPage = ({ classes }) => {
             <h1 className={classes.h1}>Cart</h1>
 
             {cartItems.length > 0 ? (
-                <CartItemsTable />
+                <React.Fragment>
+                    <CartItemsTable />
+                    <Link to={routes.CHECKOUT} className={classes.checkoutButton}>CHECKOUT</Link>
+                </React.Fragment>
             ) : (
                 <div>
                     <p>Your cart is empty</p>

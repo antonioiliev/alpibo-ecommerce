@@ -1,59 +1,36 @@
 import React from 'react'
-import MaterialTable from 'material-table';
+import { withStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
+import styles from './table.styles';
 
-const CartItemsTable = () => {
-    
-    const [columns, setColumns] = React.useState([
-        { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname', initialEditValue: 'initial edit value' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-        title: 'Birth Place',
-        field: 'birthCity',
-        lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
-    ]);
-    
-    const [data, setData] = React.useState([
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-    ]);
+const CartItemsTable = ({ classes }) => {
+    const cart = useSelector(state => state.cart.cartItems);
     
     return (
-        <MaterialTable
-        title=''
-        columns={columns}
-        data={data}
-        options={{
-            search: false,
-        }}
-        editable={{
-            onRowUpdate: (newData, oldData) =>
-            new Promise((resolve, reject) => {
-                setTimeout(() => {
-                const dataUpdate = [...data];
-                const index = oldData.tableData.id;
-                dataUpdate[index] = newData;
-                setData([...dataUpdate]);
-    
-                resolve();
-                }, 1000)
-            }),
-            onRowDelete: oldData =>
-            new Promise((resolve, reject) => {
-                setTimeout(() => {
-                const dataDelete = [...data];
-                const index = oldData.tableData.id;
-                dataDelete.splice(index, 1);
-                setData([...dataDelete]);
-                
-                resolve()
-                }, 1000)
-            }),
-        }}
-        />
+        <table className={classes.table}>
+            <thead>
+                <th className='imageTH'>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Subtotal</th>
+            </thead>
+            <tbody>
+                {cart.map((item, index) => {
+                    return (
+                        <tr>
+                            <td className="imageTD"><img src={item.image} className={classes.productImage} alt={item.name} /></td>
+                            <td>{item.name}</td>
+                            <td>${item.price.toFixed(2)}</td>
+                            <td>{item.qty}</td>
+                            <td>${(item.qty*item.price).toFixed(2)}</td>
+                        </tr>
+                    );
+                })}
+            </tbody>
+        </table>
     );
       
 }
 
-export default CartItemsTable;
+export default withStyles(styles)(CartItemsTable);

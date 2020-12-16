@@ -60,7 +60,7 @@ const HeaderCart = ({ classes }) => {
                 
 
               </React.Fragment>
-              ) : 'Your cart is empty!'}
+              ) : <p>Your cart is empty!</p>}
         </Drawer>
     </React.Fragment>
   );
