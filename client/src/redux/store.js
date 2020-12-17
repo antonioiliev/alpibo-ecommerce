@@ -3,19 +3,24 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { productListReducer, productDetailsReducer } from './reducers/product.reducers';
 import { cartReducer } from './reducers/cart.reducers';
+import { userLoginReducers } from './reducers/user.reducers';
 
 const reducers = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    userLogin: userLoginReducers
 });
 
 const cartItemsFromLocalStorage = localStorage.getItem('alpibo_cart_items') ? JSON.parse(localStorage.getItem('alpibo_cart_items')) : [];
 
+const userInfoFromLocalStorage = localStorage.getItem('alpibo_user') ? JSON.parse(localStorage.getItem('alpibo_user')) : {};
+
 const initialState = {
     cart: {
         cartItems: cartItemsFromLocalStorage
-    }
+    },
+    user: userInfoFromLocalStorage
 };
 
 const middleware = [thunk];
