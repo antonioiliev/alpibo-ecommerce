@@ -13,7 +13,9 @@ const styles = (theme) => ({
     productData: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
+        flex: 1,
+        textAlign: 'left',
         height: '100%'
     },
     productName: {

@@ -1,15 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
 import styles from './items.styles';
-import IconButton from '@material-ui/core/IconButton';
 
 const CartItem = ({ classes, product }) => {
-  const cart = useSelector(state => state.cart.cartItems);
-
-  React.useEffect(() => {
-
-  }, []);
 
   return (
     <div key={`key-${product.product}`} className={classes.root}>

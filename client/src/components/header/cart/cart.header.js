@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styles from './cart.styles';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Drawer from '@material-ui/core/Drawer';
 import Badge from '@material-ui/core/Badge';

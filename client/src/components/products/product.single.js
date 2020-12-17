@@ -8,7 +8,7 @@ import Rating from './rating/rating';
 import { addToCart as addToCartAction } from '../../redux/actions/cart.actions';
 
 const Product = ({ classes, product }) => {
-    const { _id, name, image, description, category, price, countInStock, rating, numReviews } = product;
+    const { _id, name, image, price, rating, numReviews } = product;
     const dispatch = useDispatch();
 
     const addToCart = () => {

@@ -8,10 +8,7 @@ import HeaderMenu from './menu/menu';
 import styles from './header.styles';
 import HeaderCart from './cart/cart.header';
 import IconButton from '@material-ui/core/IconButton';
-import { 
-  ShoppingBasket as CartIcon,
-  AccountCircle as AccountIcon
-} from '@material-ui/icons';
+import { AccountCircle as AccountIcon } from '@material-ui/icons';
 
 const Header = props => {
   const { classes } = props;
