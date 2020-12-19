@@ -7,11 +7,12 @@ const styles = (theme) => ({
             width: '40%',
             maxWidth: '900px',
             textAlign: 'center',
+            padding: 20,
             [theme.breakpoints.down('sm')]: {
                 width: '70%'
             },
             [theme.breakpoints.down('xs')]: {
-                width: '100%'
+                width: '80%'
             },
 
             '& p': {

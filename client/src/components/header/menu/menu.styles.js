@@ -18,13 +18,17 @@ const styles = (theme) => ({
     },
     link: {
         color: theme.palette.primary.dark,
+        background: 'none',
+        border: 'none',
         padding: '10px 20px',
         fontSize: '20px',
         transition: 'all 0.5s ease-out',
         borderBottom: `3px solid transparent`,
+        textDecoration: 'none',
         '&:hover': {
             borderBottom: `3px solid ${theme.palette.secondary.main}`,
-            textDecoration: 'none'
+            textDecoration: 'none',
+            cursor: 'pointer'
         },
         [theme.breakpoints.up('md')]: {
             fontSize: '16px',

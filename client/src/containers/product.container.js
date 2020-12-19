@@ -11,7 +11,7 @@ const ProductPage = ({ classes, match }) => {
     const dispatch = useDispatch();
 
     const productDetails = useSelector(state => state.productDetails);
-    const { loading, product, error } = productDetails;
+    const { loading, product } = productDetails;
 
     const [qty, setQty] = React.useState(1);
 
@@ -27,7 +27,7 @@ const ProductPage = ({ classes, match }) => {
 
     React.useEffect(() => {
         dispatch(listProductDetails(match.params.id));
-    }, [match]);
+    }, [match, dispatch]);
 
     return (
         <div className={classes.root}>

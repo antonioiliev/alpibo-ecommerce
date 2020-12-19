@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOGIN_REQUEST, LOGIN_REQUEST_FAIL, LOGIN_REQUEST_SUCCESS } from "../types"
+import { LOGIN_REQUEST, LOGIN_REQUEST_FAIL, LOGIN_REQUEST_SUCCESS, LOGOUT_REQUEST } from "../types"
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -7,7 +7,11 @@ export const login = (email, password) => async (dispatch) => {
             type: LOGIN_REQUEST
         });
 
-        const { data } = await axios.post('/api/users/login', { email, password }, { headers: 'application/json'});
+        const { data } = await axios.post('/api/users/login', { email, password }, { 
+            headers: { 
+                'Content-Type': 'application/json'
+            }
+        });
 
         dispatch({
             type: LOGIN_REQUEST_SUCCESS,
@@ -21,4 +25,9 @@ export const login = (email, password) => async (dispatch) => {
             payload: e.response && e.response.data.message ? e.response.data.message : e.message
         });
     }
+}
+
+export const logout = () => (dispatch) => {
+    dispatch({ type: LOGOUT_REQUEST });
+    window.localStorage.removeItem('alpibo_user');
 }

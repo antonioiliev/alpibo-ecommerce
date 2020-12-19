@@ -7,8 +7,6 @@ import routes from '../../constants/routes.json';
 import HeaderMenu from './menu/menu';
 import styles from './header.styles';
 import HeaderCart from './cart/cart.header';
-import IconButton from '@material-ui/core/IconButton';
-import { AccountCircle as AccountIcon } from '@material-ui/icons';
 
 const Header = props => {
   const { classes } = props;
@@ -26,9 +24,6 @@ const Header = props => {
           </Link>
           <HeaderMenu />
           <HeaderCart />
-          <IconButton color="primary">
-            <AccountIcon style={{ fontSize: 34 }} />
-          </IconButton>
         </Toolbar>
       </AppBar>
     </React.Fragment>

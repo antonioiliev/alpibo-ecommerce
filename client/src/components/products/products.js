@@ -9,7 +9,7 @@ import ProductsLoader from './products.loader.js';
 const Products = ({ classes }) => {
     const dispatch = useDispatch();
     const productList = useSelector(state => state.productList);
-    const { loading, products, error } = productList;
+    const { loading, products } = productList;
 
     React.useEffect(() => {
         dispatch(listProducts());
