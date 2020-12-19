@@ -3,13 +3,15 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { productListReducer, productDetailsReducer } from './reducers/product.reducers';
 import { cartReducer } from './reducers/cart.reducers';
-import { userLoginReducers } from './reducers/user.reducers';
+import { userLoginReducer, userRegisterReducer, userDetailsReducer } from './reducers/user.reducers';
 
 const reducers = combineReducers({
     productList: productListReducer,
     productDetails: productDetailsReducer,
     cart: cartReducer,
-    userLogin: userLoginReducers
+    userLogin: userLoginReducer,
+    userRegister: userRegisterReducer,
+    userDetails: userDetailsReducer
 });
 
 const cartItemsFromLocalStorage = localStorage.getItem('alpibo_cart_items') ? JSON.parse(localStorage.getItem('alpibo_cart_items')) : [];

@@ -1,7 +1,8 @@
 import React from 'react';
 import Drawer from '@material-ui/core/Drawer';
 import { withStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 import { useDispatch, useSelector } from 'react-redux';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -12,8 +13,7 @@ import items from './menu.items';
 import routes from '../../../constants/routes.json';
 import { logout as logoutAction } from '../../../redux/actions/user.actions';
 
-const HeaderMenu = props => {
-    const { classes } = props;
+const HeaderMenu = ({ classes, history }) => {
     const  { user } = useSelector(state => state.userLogin);
     const dispatch = useDispatch();
     const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
@@ -47,6 +47,10 @@ const HeaderMenu = props => {
         });
     }, []);
 
+    React.useEffect(() => {
+        closeSubMenu();
+    }, [history.location.pathname])
+
     return (
         <React.Fragment>
             {screenWidth >= 960 ? (
@@ -55,7 +59,7 @@ const HeaderMenu = props => {
                         {items.map((value, index) => {
                             return <Link key={`menu-link-${index}`} className={classes.link} to={value.href}>{value.title}</Link>
                         })}
-                        {user.name !== undefined ? (
+                        {user !== undefined && user.name ? (
                             <React.Fragment>
                                 <button onClick={openSubmenu} className={classes.link}>Hi, {user.name}</button>
                                 <Menu
@@ -67,7 +71,7 @@ const HeaderMenu = props => {
                                     open={Boolean(anchorEl)}
                                     onClose={closeSubMenu}
                                 >
-                                    <MenuItem onClick={closeSubMenu}>Profile</MenuItem>
+                                    <MenuItem onClick={() => history.push(routes.MY_ACCOUNT)}>Profile</MenuItem>
                                     <MenuItem onClick={logout}>Logout</MenuItem>
                                 </Menu>
                             </React.Fragment>
@@ -105,4 +109,4 @@ const HeaderMenu = props => {
     );
 }
 
-export default withStyles(styles)(HeaderMenu);
+export default compose(withStyles(styles), withRouter)(HeaderMenu);

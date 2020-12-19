@@ -6,36 +6,47 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from '../myaccount.styles';
 import FormElement from '../form.element';
 import routes from '../../../constants/routes.json';
-import { login } from '../../../redux/actions/user.actions';
+import { register } from '../../../redux/actions/user.actions';
 
 
-const Login = ({ classes }) => {
+const Register = ({ classes }) => {
     const dispatch = useDispatch();
-    const { loading, user, error } = useSelector(state => state.userLogin);
+    const { loading, error } = useSelector(state => state.userRegister);
+    const [name, setName] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     const handleChange = e => {
-        if (e.target.id === 'login_email') {
+        if (e.target.id === 'register_name') {
+            setName(e.target.value);
+        } else if (e.target.id === 'register_email') {
             setEmail(e.target.value);
-        } else if (e.target.id === 'login_password') {
+        } else if (e.target.id === 'register_password') {
             setPassword(e.target.value);
         }
     }
 
-    const loginSubmit = (e) => {
+    const registerSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(email, password));
+        dispatch(register(name, email, password));
     }
 
     return (
         <div className={classes.root}>
-            <h1 className={classes.h1}>Sign in your account</h1>
+            <h1 className={classes.h1}>Register a new account</h1>
             {error && <p className={classes.error}>{error}</p>}
             <form>
                 <FormElement 
+                    type="text"
+                    id="register_name"
+                    label="Name"
+                    value={name}
+                    handleChange={handleChange}
+                /> 
+
+                <FormElement 
                     type="email"
-                    id="login_email"
+                    id="register_email"
                     label="Email"
                     value={email}
                     handleChange={handleChange}
@@ -43,16 +54,16 @@ const Login = ({ classes }) => {
 
                 <FormElement 
                     type="password"
-                    id="login_password"
+                    id="register_password"
                     label="Password"
                     value={password}
                     handleChange={handleChange}
                 /> 
-                <p>Not registered? <Link to={routes.REGISTER}>Create your account</Link></p>
+                <p>Already have an account? <Link to={routes.LOGIN}>Sign in</Link></p>
                 {loading ? (
                     <Skeleton variant="rect" width={'100%'} height={50} />
                 ) : (
-                    <button type="submit" onClick={loginSubmit} className={classes.submitButton}>Login</button>
+                    <button type="submit" onClick={registerSubmit} className={classes.submitButton}>Register</button>
                 )}
                 
             </form>
@@ -60,4 +71,4 @@ const Login = ({ classes }) => {
     )
 }
 
-export default withStyles(styles)(Login);
+export default withStyles(styles)(Register);

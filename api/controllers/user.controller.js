@@ -22,13 +22,51 @@ export const authUser = catchAsync(async (req, res) => {
 });
 
 export const getUserProfile = catchAsync(async (req, res) => {
-    const user = User.findById(req.user._id);
+    const user = await User.findById(req.user._id);
     if (user) {
         res.json({
             id: user._id,
             email: user.email, 
             name: user.name,
             isAdmin: user.isAdmin,
+        });
+    } else {
+        res.status(404);
+        throw new Error('User not found');
+    }
+});
+
+export const updateUserProfile = catchAsync(async (req, res) => {
+    const { id, name, email, password } = req.body;
+    
+    const user = await User.findById(id);
+
+    if (user) {
+        if (email && email !== '' && email !== user.email) {
+            const duplicateUser = await User.exists({ email });
+
+            if (!duplicateUser) {
+                user.email = email || user.email;
+            } else {
+                res.status(403);
+                throw new Error('User email already exists!');
+            }
+        }
+
+        if (name && name !== '' && name !== user.name) {
+            user.name = name || user.name;
+        }
+        
+        if (password && password !== '') {
+            user.password = password;
+        }
+
+        const updatedUser = await user.save();
+        res.json({
+            id: updatedUser._id,
+            email: updatedUser.email, 
+            name: updatedUser.name,
+            isAdmin: updatedUser.isAdmin,
         });
     } else {
         res.status(404);

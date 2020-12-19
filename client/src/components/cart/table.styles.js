@@ -27,7 +27,7 @@ const styles = (theme) => ({
       }
     },
     '& input': {
-      width: '40px',
+      width: '60px',
       padding: '10px'
     }
   },

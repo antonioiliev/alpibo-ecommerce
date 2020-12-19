@@ -34,10 +34,11 @@ const styles = (theme) => ({
         height: 300
     },
     qtyInput: {
-        maxWidth: '40px',
+        width: '60px',
         padding: '10px 10px',
         fontSize: '18px',
         border: `1px solid ${theme.palette.primary.main}`,
+        borderRight: 'none'
     },
     addToCartButton: {
         padding: '10px',
