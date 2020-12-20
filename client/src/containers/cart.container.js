@@ -8,6 +8,14 @@ import CartItemsTable from '../components/cart/cart.table';
 
 const CartPage = ({ classes }) => {
     const { cartItems } = useSelector(state => state.cart);
+    const [subTotal, setSubTotal] = React.useState(0);
+
+    React.useEffect(() => {
+        if (cartItems.length > 0) {
+            const subTotalValue = cartItems.reduce((acc, item) => acc + item.qty * item.price, 0);
+            setSubTotal(subTotalValue.toFixed(2));
+        }
+    }, [cartItems])
 
     return (
         <div>
@@ -16,6 +24,7 @@ const CartPage = ({ classes }) => {
             {cartItems.length > 0 ? (
                 <React.Fragment>
                     <CartItemsTable />
+                    <h5 style={{ textAlign: 'center', fontSize: 22 }}>Subtotal: ${subTotal}</h5>
                     <Link to={routes.CHECKOUT} className={classes.checkoutButton}>CHECKOUT</Link>
                 </React.Fragment>
             ) : (

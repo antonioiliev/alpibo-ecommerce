@@ -6,6 +6,7 @@ import HomePage from './containers/homepage.container';
 import ProductPage from './containers/product.container';
 import CartPage from './containers/cart.container';
 import MyAccount from './containers/myaccount.container';
+import Checkout from './containers/checkout.container';
 import routes from './constants/routes.json';
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
       <Route path={routes.PRODUCT} component={ProductPage} />
       <Route path={routes.CART} component={CartPage} />
       <Route path={[routes.MY_ACCOUNT, routes.LOGIN, routes.REGISTER]} component={MyAccount} />
+      <Route path={routes.CHECKOUT} component={Checkout} />
       <Footer />
     </div>
   );

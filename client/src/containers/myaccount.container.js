@@ -23,7 +23,7 @@ const MyAccount = ({ classes, match, history }) => {
                 history.push(routes.LOGIN);
             }
         }
-    }, [user, history.location.pathname]);
+    }, [user, history, match, history.location.pathname]);
 
     return (
         loggedIn ? (

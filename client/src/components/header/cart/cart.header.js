@@ -10,6 +10,7 @@ import {
   ShoppingBasket as CartIcon,
 } from '@material-ui/icons';
 import CartItem from './items/cart.item';
+import routes from '../../../constants/routes.json';
 
 const HeaderCart = ({ classes }) => {
   const cart = useSelector(state => state.cart.cartItems);
@@ -45,14 +46,14 @@ const HeaderCart = ({ classes }) => {
                 <p className={classes.subTotal}>Subtotal: ${subTotal.toFixed(2)}</p>
                 <div className={classes.buttonsWrapper}>
                   <Link 
-                    to="/cart"
+                    to={routes.CART}
                     className={classes.reviewCartButton}
                     onClick={() => toggleDrawer(false)}
                   >
                     Review Cart
                   </Link>
                   <Link 
-                    to="/checkout"
+                    to={routes.CHECKOUT}
                     className={classes.checkoutButton}
                     onClick={() => toggleDrawer(false)}
                   >

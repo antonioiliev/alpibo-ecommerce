@@ -37,7 +37,7 @@ const MyAccountComponent = ({ classes, history }) => {
         <div className={classes.root}>
             <h1 className={classes.h1}>My Account</h1>
             {error && <p className={classes.error}>{error}</p>}
-            <form>
+            <form onSubmit={updateDetailsSubmit}>
                 <FormElement 
                     type="text"
                     label="Name"

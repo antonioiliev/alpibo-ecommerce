@@ -4,6 +4,7 @@
     "CART": "/cart",
     "MY_ACCOUNT": "/my-account",
     "LOGIN": "/my-account/login",
-    "REGISTER": "/my-account/register"
+    "REGISTER": "/my-account/register",
+    "CHECKOUT": "/checkout"
 }
   
