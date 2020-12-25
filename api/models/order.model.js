@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 
 const orderSchema = mongoose.Schema({
+    // TODO - make it work with a user through protected route
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        required: false,
         ref: 'User'
     },
     orderItems: [
@@ -20,6 +21,18 @@ const orderSchema = mongoose.Schema({
         }
     ],
     shippingAddress: {
+        name: {
+            type: String,
+            required: true
+        },
+        email: {
+            type: String,
+            required: true
+        },
+        phone: {
+            type: String,
+            required: true
+        },
         address: {
             type: String,
             required: true
@@ -28,7 +41,7 @@ const orderSchema = mongoose.Schema({
             type: String,
             required: true
         },
-        postCode: {
+        postcode: {
             type: String,
             required: true
         },

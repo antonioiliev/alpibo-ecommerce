@@ -4,6 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { productListReducer, productDetailsReducer } from './reducers/product.reducers';
 import { cartReducer } from './reducers/cart.reducers';
 import { userLoginReducer, userRegisterReducer, userDetailsReducer } from './reducers/user.reducers';
+import { orderCreateReducer, orderDetailsReducer } from './reducers/order.reducers';
 
 const reducers = combineReducers({
     productList: productListReducer,
@@ -11,16 +12,20 @@ const reducers = combineReducers({
     cart: cartReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
-    userDetails: userDetailsReducer
+    userDetails: userDetailsReducer,
+    orderCreate: orderCreateReducer,
+    orderDetails: orderDetailsReducer
 });
 
 const cartItemsFromLocalStorage = localStorage.getItem('alpibo_cart_items') ? JSON.parse(localStorage.getItem('alpibo_cart_items')) : [];
 
 const userInfoFromLocalStorage = localStorage.getItem('alpibo_user') ? JSON.parse(localStorage.getItem('alpibo_user')) : {};
+const shippingAddressFromLocalStorage = localStorage.getItem('alpibo_shipping_address') ? JSON.parse(localStorage.getItem('alpibo_shipping_address')) : {};
 
 const initialState = {
     cart: {
-        cartItems: cartItemsFromLocalStorage
+        cartItems: cartItemsFromLocalStorage,
+        shippingAddress: shippingAddressFromLocalStorage
     },
     userLogin: { 
         user: userInfoFromLocalStorage

@@ -1,6 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles/checkout.styles';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -12,23 +12,28 @@ import Login from '../components/myaccount/login/login.component';
 import Register from '../components/myaccount/register/register.component';
 import routes from '../constants/routes.json';
 import FormElement from '../components/myaccount/form.element';
+import { saveShippingAddress } from '../redux/actions/cart.actions';
+import { createOrder } from '../redux/actions/order.actions';
 
 const Checkout = ({ classes, match, history }) => {
     const { user } = useSelector(state => state.userLogin);
-    const { cartItems } = useSelector(state => state.cart);
+    const { cartItems, shippingAddress } = useSelector(state => state.cart);
+    const { order, success, error } = useSelector(state => state.orderCreate);
     const [loggedIn, setLoggedIn] = React.useState(false);
     const [subTotal, setSubTotal] = React.useState(0);
     const [paymentMethodValue, setPaymentMethodValue] = React.useState('credit-card');
     const [TCs, setTCs] = React.useState(false);
     const [userShippingData, setUserShippingData] = React.useState({
-        name: '',
-        email: '',
-        phone: '',
-        address_field: '',
-        city: '',
-        postcode: '',
-        country: ''
+        name: shippingAddress.name || '',
+        email: shippingAddress.email || '',
+        phone: shippingAddress.phone || '',
+        address: shippingAddress.address || '',
+        city: shippingAddress.city || '',
+        postcode: shippingAddress.postcode || '',
+        country: shippingAddress.country || ''
     });
+
+    const dispatch = useDispatch();
 
     const choosePaymentMethod = (event) => {
         setPaymentMethodValue(event.target.value);
@@ -45,7 +50,14 @@ const Checkout = ({ classes, match, history }) => {
     };
 
     const finishCheckout = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
+        console.log('finishing checkout');
+        dispatch(saveShippingAddress(userShippingData));
+        dispatch(createOrder({
+            orderItems: cartItems,
+            shippingAddress: shippingAddress,
+            paymentMethod: paymentMethodValue
+        }))
     };
 
     React.useEffect(() => {
@@ -63,6 +75,12 @@ const Checkout = ({ classes, match, history }) => {
             setLoggedIn(false);
         }
     }, [user, history, match, history.location.pathname]);
+
+    React.useEffect(() => {
+        if (success && order._id) {
+            history.push(`/order/${order._id}`)
+        }
+    }, [history, order, success])
 
     return (
         <div className={classes.root}>
@@ -100,8 +118,8 @@ const Checkout = ({ classes, match, history }) => {
                             type="text"
                             label="Address"
                             required
-                            value={userShippingData.address_field}
-                            handleChange={(e) => handleShippingDataChange('address_field', e.target.value)}
+                            value={userShippingData.address}
+                            handleChange={(e) => handleShippingDataChange('address', e.target.value)}
                         /> 
                     </div>
                     <div className={classes.halfRow}>

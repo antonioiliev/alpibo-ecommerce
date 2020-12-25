@@ -7,7 +7,7 @@ const FormElement = ({ classes, type, id, label, value, handleChange, required }
         <div className={classes.root}>
             <label htmlFor={id}>
                 {label}
-                {required && <abbr class="required" title="required">*</abbr>}
+                {required && <abbr className="required" title="required">*</abbr>}
             </label>
             <input type={type} onChange={handleChange} required={required} value={value} id={id} />
         </div>
