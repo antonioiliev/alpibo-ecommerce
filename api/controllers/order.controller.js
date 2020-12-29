@@ -24,13 +24,18 @@ export const addOrder = catchAsync(async (req, res) => {
 
 export const getOrderById = catchAsync(async (req, res) => {
     const { id } = req.params;
+    if (mongoose.Types.ObjectId.isValid(id)) {
+        const order = await Order.findById(id);
+        console.log('order with error', order);
 
-    const order = await Order.findById(id);
-
-    if (order) {
-        res.json(order);
+        if (order) {
+            res.json(order);
+        } else {
+            res.status(404);
+            throw new Error('Order not found!');
+        }
     } else {
         res.status(404);
-        throw new Error('Order not found');
+        throw new Error('Order not found!');
     }
 });

@@ -6,6 +6,7 @@ import styles from './styles/myaccount.styles';
 import MyAccountComponent from '../components/myaccount/myaccount.component';
 import Login from '../components/myaccount/login/login.component';
 import Register from '../components/myaccount/register/register.component';
+import Order from '../components/myaccount/order/order.component';
 import routes from '../constants/routes.json';
 
 const MyAccount = ({ classes, match, history }) => {
@@ -27,7 +28,9 @@ const MyAccount = ({ classes, match, history }) => {
 
     return (
         loggedIn ? (
-            <Route path={routes.MY_ACCOUNT} component={MyAccountComponent} />
+            <React.Fragment>
+                {match.path === routes.ORDER && match.isExact ? <Route path={routes.ORDER} component={Order} /> : <Route path={routes.MY_ACCOUNT} component={MyAccountComponent} />}
+            </React.Fragment>
         ) : (
             <React.Fragment>
                 <Route path={routes.LOGIN} component={Login} />

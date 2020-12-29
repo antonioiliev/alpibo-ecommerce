@@ -5,6 +5,7 @@
     "MY_ACCOUNT": "/my-account",
     "LOGIN": "/my-account/login",
     "REGISTER": "/my-account/register",
+    "ORDER": "/my-account/orders/:orderId",
     "CHECKOUT": "/checkout"
 }
   

@@ -16,7 +16,7 @@ const App = () => {
       <Route path={routes.HOME} exact component={HomePage} />
       <Route path={routes.PRODUCT} component={ProductPage} />
       <Route path={routes.CART} component={CartPage} />
-      <Route path={[routes.MY_ACCOUNT, routes.LOGIN, routes.REGISTER]} component={MyAccount} />
+      <Route path={[routes.ORDER, routes.MY_ACCOUNT, routes.LOGIN, routes.REGISTER]} component={MyAccount} />
       <Route path={routes.CHECKOUT} component={Checkout} />
       <Footer />
     </div>
