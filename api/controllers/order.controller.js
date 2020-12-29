@@ -26,8 +26,6 @@ export const getOrderById = catchAsync(async (req, res) => {
     const { id } = req.params;
     if (mongoose.Types.ObjectId.isValid(id)) {
         const order = await Order.findById(id);
-        console.log('order with error', order);
-
         if (order) {
             res.json(order);
         } else {
